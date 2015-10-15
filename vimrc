@@ -15,12 +15,21 @@
   " }
 
   " Completion {
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-    Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+    " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+    " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+
+    Plug 'Shougo/neocomplete.vim'
+  " }
+
+  " Snippets {
+    Plug 'Shougo/neosnippet'
+    Plug 'Shougo/neosnippet-snippets'
+    Plug 'honza/vim-snippets'
   " }
 
   " Haskell {
     Plug 'dag/vim2hs', { 'for': [ 'haskell' ] }
+    " Plug 'eagletmt/neco-ghc', { 'for': [ 'haskell' ] }
   " }
 
   " LaTeX {
@@ -148,18 +157,48 @@
   noremap <leader>c :Commentary<CR>
 " }
 
-" YouCompleteMe {
-  let g:ycm_confirm_extra_conf = 0
-  let g:ycm_semantic_triggers = {
-  \   'c'   : ['->', '.'],
-  \   'cpp' : ['->', '.', '::'],
-  \   'tex' : ['{'],
-  \ }
+" Haskell {
+  " let g:haskellmode_completion_ghc = 0
+  " autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+  " Ensure ghc-mod is in $PATH
+  " let $PATH = $PATH . ':' . expand("~/.local/bin")
+" }
+
+" NeoComplete {
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_smart_case = 1
+
+  imap <expr><CR> pumvisible() ?
+        \ (neosnippet#expandable() ?
+        \   "\<Plug>(neosnippet_expand_or_jump)" :
+        \   "\<C-y>")
+        \ : "\<CR>"
+  inoremap <expr><s-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+  inoremap <expr><TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
+" }
+
+" NeoSnippet {
+  let g:neosnippet#snippets_directory = '~/.vim/plugged/vim-snippets/snippets'
+
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
 " }
 
 " LaTeX-Box {
   autocmd FileType tex set wrap lbr
   autocmd FileType tex noremap <buffer> <silent> k gk
   autocmd FileType tex noremap <buffer> <silent> j gj
-  autocmd FileType tex imap \ \<C-Space>
+
+  let g:LatexBox_Folding = 1
+  let g:LatexBox_viewer = "texshop-preview"
+
+  " Mappings {
+    vmap <buffer> <localleader>lw <Plug>LatexWrapSelection
+  " }
+" }
+
+" Netrw {
+  let g:netrw_silent = 1
 " }

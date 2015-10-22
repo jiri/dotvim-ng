@@ -9,31 +9,33 @@
   Plug 'tpope/vim-commentary'
   Plug 'bling/vim-airline'
 
+  Plug 'iandoe/vim-osx-colorpicker'
+
   " Colors & fonts {
     Plug 'chriskempson/base16-vim'
     Plug 'chriskempson/vim-tomorrow-theme'
   " }
 
   " Completion {
-    " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-    " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
     Plug 'Shougo/neocomplete.vim'
   " }
 
   " Snippets {
     Plug 'Shougo/neosnippet'
     Plug 'Shougo/neosnippet-snippets'
-    Plug 'honza/vim-snippets'
   " }
 
   " Haskell {
     Plug 'dag/vim2hs', { 'for': [ 'haskell' ] }
-    " Plug 'eagletmt/neco-ghc', { 'for': [ 'haskell' ] }
+    Plug 'eagletmt/neco-ghc', { 'for': [ 'haskell' ] }
   " }
 
   " LaTeX {
     Plug 'LaTeX-Box-Team/LaTeX-Box'
+  " }
+
+  " OpenSCAD {
+    Plug 'sirtaj/vim-openscad'
   " }
 
   call plug#end()
@@ -48,7 +50,7 @@
 
   " Search {
     set incsearch
-    set smartcase
+    set ignorecase smartcase
     set nohlsearch
   " }
 
@@ -72,11 +74,12 @@
 " }
 
 " Keyboard {
-  let mapleader = "\<space>"
-  let maplocalleader = "\<space>"
-
   noremap ; :
   noremap Q <nop>
+
+  " Supreme leader
+  let mapleader = "\<space>"
+  let maplocalleader = "\<space>"
 
   " Line bubbling & indentation {
     vnoremap <silent> K :move '<-2<CR>gv=gv
@@ -87,15 +90,17 @@
   " }
 
   " Buffer switching {
-    nmap <leader>] :bn<CR>
-    nmap <leader>[ :bp<CR>
+    nmap <silent> <leader>] :bn<CR>
+    nmap <silent> <leader>[ :bp<CR>
   " }
 "}
 
 " Text {
   " Colors & fonts {
+    " http://input.fontbureau.com
     set guifont=Input:h16
 
+    " http://chriskempson.github.io/base16/#eighties
     set background=dark
     colorscheme base16-eighties
 
@@ -147,6 +152,7 @@
 
   let g:airline_powerline_fonts = 1
 
+  " Enable tabline
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#left_sep = ' '
   let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -158,11 +164,11 @@
 " }
 
 " Haskell {
-  " let g:haskellmode_completion_ghc = 0
-  " autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+  let g:haskellmode_completion_ghc = 0
+  autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
   " Ensure ghc-mod is in $PATH
-  " let $PATH = $PATH . ':' . expand("~/.local/bin")
+  let $PATH = $PATH . ':' . expand("~/.local/bin")
 " }
 
 " NeoComplete {
@@ -180,14 +186,10 @@
 
 " NeoSnippet {
   let g:neosnippet#snippets_directory = '~/.vim/plugged/vim-snippets/snippets'
-
-  if has('conceal')
-    set conceallevel=2 concealcursor=niv
-  endif
 " }
 
 " LaTeX-Box {
-  autocmd FileType tex set wrap lbr
+  " autocmd FileType tex setlocal wrap lbr
   autocmd FileType tex noremap <buffer> <silent> k gk
   autocmd FileType tex noremap <buffer> <silent> j gj
 
@@ -195,7 +197,16 @@
   let g:LatexBox_viewer = "texshop-preview"
 
   " Mappings {
-    vmap <buffer> <localleader>lw <Plug>LatexWrapSelection
+    function! g:ToggleConceal()
+      if(&conceallevel)
+        setlocal conceallevel=0
+      else
+        setlocal conceallevel=2
+      endif
+    endfunc
+
+    autocmd FileType tex vmap <buffer> <localleader>lw <Plug>LatexWrapSelection
+    autocmd FileType tex nmap <buffer> § :call ToggleConceal()<CR>
   " }
 " }
 

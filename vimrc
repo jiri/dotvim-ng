@@ -35,6 +35,11 @@
     Plug 'sirtaj/vim-openscad'
   " }
 
+  " Web & SQL {
+    Plug 'othree/html5.vim'
+    Plug 'exu/pgsql.vim'
+  " }
+
   call plug#end()
 " }
 

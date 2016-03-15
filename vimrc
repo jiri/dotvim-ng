@@ -175,7 +175,10 @@
 
 " Haskell {
   let g:haskellmode_completion_ghc = 0
+  let g:necoghc_enable_detailed_browse = 1
+
   autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+  autocmd FileType haskell setlocal ts=4 sts=4 sw=4
 
   " Ensure ghc-mod is in $PATH
   let $PATH = $PATH . ':' . expand("~/.local/bin")

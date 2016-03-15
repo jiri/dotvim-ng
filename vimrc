@@ -12,6 +12,7 @@
   " Colors & fonts {
     Plug 'chriskempson/base16-vim'
     Plug 'chriskempson/vim-tomorrow-theme'
+    Plug 'sickill/vim-monokai'
   " }
 
   " Completion {
@@ -99,8 +100,8 @@
     set guifont=Input:h14
 
     " http://chriskempson.github.io/base16/#eighties
-    set background=dark
-    colorscheme base16-eighties
+    " set background=dark
+    colorscheme monokai
 
     if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
       set t_Co=16

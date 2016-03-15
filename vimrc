@@ -15,13 +15,11 @@
     Plug 'sickill/vim-monokai'
   " }
 
-  " Completion {
-    Plug 'Shougo/neocomplete.vim'
-  " }
-
-  " Snippets {
+  " Snippets & Completion {
     Plug 'Shougo/neosnippet'
     Plug 'Shougo/neosnippet-snippets'
+
+    Plug 'Shougo/neocomplete.vim'
   " }
 
   " Haskell {

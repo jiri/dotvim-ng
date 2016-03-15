@@ -9,8 +9,6 @@
   Plug 'tpope/vim-commentary'
   Plug 'bling/vim-airline'
 
-  Plug 'iandoe/vim-osx-colorpicker'
-
   " Colors & fonts {
     Plug 'chriskempson/base16-vim'
     Plug 'chriskempson/vim-tomorrow-theme'

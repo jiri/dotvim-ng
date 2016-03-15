@@ -102,6 +102,10 @@
     nmap <silent> <leader>] :bn<CR>
     nmap <silent> <leader>[ :bp<CR>
   " }
+
+  " Miscellaneous {
+    nmap <silent> <leader>o :!open %<CR><CR>
+  " }
 "}
 
 " Text {

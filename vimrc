@@ -8,6 +8,7 @@
 
   Plug 'tpope/vim-commentary'
   Plug 'bling/vim-airline'
+  Plug 'godlygeek/tabular'
 
   " Colors & fonts {
     Plug 'chriskempson/base16-vim'

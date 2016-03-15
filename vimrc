@@ -35,6 +35,11 @@
     Plug 'sirtaj/vim-openscad'
   " }
 
+  " Rust {
+    Plug 'rust-lang/rust.vim'
+    Plug 'cespare/vim-toml'
+  " }
+
   " Web & SQL {
     Plug 'othree/html5.vim'
     Plug 'exu/pgsql.vim'

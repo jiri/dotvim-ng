@@ -96,7 +96,7 @@
 " Text {
   " Colors & fonts {
     " http://input.fontbureau.com
-    set guifont=Input:h16
+    set guifont=Input:h14
 
     " http://chriskempson.github.io/base16/#eighties
     set background=dark

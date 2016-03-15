@@ -55,6 +55,7 @@
   set fileformats+=mac
 
   set sessionoptions-=options
+  set shell=bash\ --norc
 
   " Search {
     set incsearch
